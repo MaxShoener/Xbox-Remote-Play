@@ -1,11 +1,12 @@
 {
-  "name": "xbox-remote-backend",
-  "type": "module",
+  "name": "xbox-remote-web",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "build": "cd frontend && npm install && npm run build"
+  },
   "dependencies": {
     "express": "^4.19.2",
     "wrtc": "^0.4.7"
-  },
-  "scripts": {
-    "start": "node index.js"
   }
 }
