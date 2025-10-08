@@ -1,1 +1,15 @@
-
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "nixpacksPlan": {
+      "phases": {
+        "build": {
+          "cmds": ["npm run build"]
+        }
+      },
+      "start": {
+        "cmd": "npm start"
+      }
+    }
+  }
+}
