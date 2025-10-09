@@ -7,8 +7,8 @@ export default async function handler(req, res) {
   const client = new AuthorizationCode({
     client: { id: MS_CLIENT_ID, secret: MS_CLIENT_SECRET },
     auth: {
-      tokenHost: "https://login.microsoftonline.com/common/oauth2/v2.0"
-    }
+  tokenHost: "https://login.microsoftonline.com/common/oauth2/v2.0"
+}
   });
 
   try {
