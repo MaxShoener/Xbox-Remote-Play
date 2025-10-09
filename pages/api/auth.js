@@ -12,7 +12,8 @@ export default async function handler(req, res) {
 
   const authorizationUri = client.authorizeURL({
     redirect_uri: MS_REDIRECT_URI,
-    scope: "XboxLive.signin XboxLive.offline_access"
+    scope: "XboxLive.signin XboxLive.offline_access",
+    response_type: "code"
   });
 
   res.redirect(authorizationUri);
