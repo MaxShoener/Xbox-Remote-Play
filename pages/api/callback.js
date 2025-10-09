@@ -4,11 +4,15 @@ export default async function handler(req, res) {
   const { code } = req.query;
   const { MS_CLIENT_ID, MS_CLIENT_SECRET, MS_REDIRECT_URI } = process.env;
 
+  if (!code) {
+    return res.status(400).json({ error: "Missing authorization code" });
+  }
+
   const client = new AuthorizationCode({
     client: { id: MS_CLIENT_ID, secret: MS_CLIENT_SECRET },
     auth: {
-  tokenHost: "https://login.microsoftonline.com/common/oauth2/v2.0"
-}
+      tokenHost: "https://login.microsoftonline.com/common/oauth2/v2.0"
+    }
   });
 
   try {
@@ -19,12 +23,12 @@ export default async function handler(req, res) {
     };
 
     const accessToken = await client.getToken(tokenParams);
-    console.log("Access Token Received:", accessToken.token);
+    console.log("Access token received:", accessToken.token);
 
-    // Redirect back to home after auth
+    // TODO: Use token to query Xbox Live API or store session
     res.redirect("/");
   } catch (error) {
-    console.error("Access Token Error", error.message);
+    console.error("Token exchange failed:", error.message);
     res.status(500).json({ error: "Authentication failed" });
   }
 }
